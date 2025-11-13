@@ -1,7 +1,7 @@
 import random
 import praw
-from .config import CONFIG
-from .storage import load_meta, save_meta
+from bot.config import CONFIG
+from bot.storage import load_meta, save_meta
 
 CHALLENGES = [
     "📱 Phone-in-hand POV — caption your most cursed notification.",

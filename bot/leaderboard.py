@@ -1,8 +1,8 @@
 """Leaderboard utilities (placeholder)."""
 import praw
-from .config import CONFIG
-from .storage import load_meta, save_meta
-from .counters import snapshot_top
+from bot.config import CONFIG
+from bot.storage import load_meta, save_meta
+from bot.counters import snapshot_top
 
 def main():
     reddit = praw.Reddit(

@@ -1,4 +1,4 @@
-from .storage import load_counts
+from bot.storage import load_counts
 
 def build_flair_text(stats, thresholds, hot_take_score):
     base = f"P:{stats['posts']} • C:{stats['comments']} • 🔥{stats['streak']}"

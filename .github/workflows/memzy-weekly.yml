@@ -36,8 +36,8 @@ jobs:
           WEEKLY_STICKY_ENABLED: "true"
           WEEKLY_CHALLENGE_ENABLED: "true"
         run: |
-          python bot/leaderboard.py
-          python bot/challenge.py
+          python -m bot.leaderboard
+          python -m bot.challenge
 
       - name: Commit state
         run: |
