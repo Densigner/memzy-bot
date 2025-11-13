@@ -1,14 +1,44 @@
-"""Challenge handling (placeholder)."""
-from .storage import Storage
+import random
+import praw
+from .config import CONFIG
+from .storage import load_meta, save_meta
 
-class ChallengeManager:
-    def __init__(self, storage: Storage = None):
-        self.storage = storage or Storage()
+CHALLENGES = [
+    "📱 Phone-in-hand POV — caption your most cursed notification.",
+    "🖼️ Classic painting — insert modern UI popups.",
+    "🍞 Toast That — turn boring objects into epic revelations.",
+    "🎮 Patch Notes — write life as a game update.",
+    "📈 Doom Graph — create absurd graphs portraying 'facts'.",
+]
 
-    def add_challenge(self, challenge_id: str, payload: dict):
-        challenges = self.storage.get('challenges', {})
-        challenges[challenge_id] = payload
-        self.storage.set('challenges', challenges)
+def main():
+    if not CONFIG["weekly_challenge_enabled"]:
+        return
 
-    def list_challenges(self):
-        return list(self.storage.get('challenges', {}).values())
+    reddit = praw.Reddit(
+        client_id=CONFIG["client_id"],
+        client_secret=CONFIG["client_secret"],
+        username=CONFIG["username"],
+        password=CONFIG["password"],
+        user_agent=CONFIG["user_agent"],
+    )
+    sub = reddit.subreddit(CONFIG["subreddit"])
+
+    prompt = random.choice(CHALLENGES)
+
+    title = "🔥 Weekly Meme Challenge"
+    body = f"{prompt}\n\nPost with flair **Challenge** and we’ll feature the best ones."
+
+    post = sub.submit(title=title, selftext=body, send_replies=False)
+
+    try:
+        post.mod.sticky(bottom=True)
+    except:
+        pass
+
+    meta = load_meta()
+    meta.setdefault("weekly_threads", {})["challenge_post_id"] = post.id
+    save_meta(meta)
+
+if __name__ == "__main__":
+    main()

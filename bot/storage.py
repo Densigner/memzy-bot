@@ -1,40 +1,44 @@
-"""Simple JSON-backed storage for bot state."""
-import json
-from pathlib import Path
-from typing import Any
+import json, os
 
-from .config import STATE_FILE
+STATE_DIR = "state"
+COUNTS_PATH = os.path.join(STATE_DIR, "counts.json")
+META_PATH   = os.path.join(STATE_DIR, "meta.json")
 
-class Storage:
-    def __init__(self, path: Path = STATE_FILE):
-        self.path = path
-        # ensure parent exists
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        if not self.path.exists():
-            self._write({})
+EMPTY = { "users": {} }
 
-    def _read(self) -> dict:
-        try:
-            with self.path.open('r', encoding='utf-8') as f:
-                return json.load(f)
-        except Exception:
-            return {}
+META_EMPTY = {
+    "last_seen_submission": "",
+    "last_seen_comment": "",
+    "welcomed_posts": [],
+    "weekly_threads": {
+        "leaderboard_post_id": "",
+        "challenge_post_id": ""
+    }
+}
 
-    def _write(self, data: dict) -> None:
-        with self.path.open('w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2)
+def _ensure():
+    os.makedirs(STATE_DIR, exist_ok=True)
+    if not os.path.exists(COUNTS_PATH):
+        with open(COUNTS_PATH, "w", encoding="utf-8") as f: json.dump(EMPTY, f, indent=2)
+    if not os.path.exists(META_PATH):
+        with open(META_PATH, "w", encoding="utf-8") as f: json.dump(META_EMPTY, f, indent=2)
 
-    def get(self, key: str, default: Any = None) -> Any:
-        data = self._read()
-        return data.get(key, default)
+def load_counts():
+    _ensure()
+    with open(COUNTS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-    def set(self, key: str, value: Any) -> None:
-        data = self._read()
-        data[key] = value
-        self._write(data)
+def save_counts(data):
+    os.makedirs(STATE_DIR, exist_ok=True)
+    with open(COUNTS_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
-    def delete(self, key: str) -> None:
-        data = self._read()
-        if key in data:
-            del data[key]
-            self._write(data)
+def load_meta():
+    _ensure()
+    with open(META_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_meta(meta):
+    os.makedirs(STATE_DIR, exist_ok=True)
+    with open(META_PATH, "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2, ensure_ascii=False)

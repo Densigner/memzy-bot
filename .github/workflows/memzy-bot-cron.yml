@@ -2,22 +2,49 @@ name: memzy-bot-cron
 
 on:
   schedule:
-    # run every day at 07:00 UTC (example)
-    - cron: '0 7 * * *'
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 jobs:
-  run-bot:
+  run:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Install dependencies
+          python-version: "3.11"
+
+      - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run daily job
+          pip install -r requirements.txt
+
+      - name: Run bot tick
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          SUBREDDIT: ${{ secrets.SUBREDDIT }}
+          BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
+          WELCOME_ENABLED: "true"
+          FLAIR_ENABLED: "true"
+          BADGES_ENABLED: "true"
+          POST_REWARD_THRESHOLDS: "5,10,25,50"
+          HOT_TAKE_SCORE: "50"
         run: |
-          python -m bot.main --cron
+          python bot/main.py
+
+      - name: Commit state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/*.json
+          git commit -m "memzy-bot: update state [skip ci]" || echo "No changes"
+          git push
