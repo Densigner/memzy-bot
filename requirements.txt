@@ -1,0 +1,3 @@
+# Runtime requirements for memzy-bot
+# Keep empty if relying on Python stdlib
+
