@@ -1,6 +1,6 @@
 from datetime import datetime
 from dateutil import tz
-from .storage import load_counts, save_counts
+from bot.storage import load_counts, save_counts
 
 UK = tz.gettz("Europe/London")
 

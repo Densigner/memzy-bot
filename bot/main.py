@@ -1,10 +1,10 @@
 import time
 import praw
-from .config import CONFIG
-from .storage import load_meta, save_meta
-from .counters import record_submission, record_comment
-from .flair import update_user_flair
-from .welcome import maybe_welcome
+from bot.config import CONFIG
+from bot.storage import load_meta, save_meta
+from bot.counters import record_submission, record_comment
+from bot.flair import update_user_flair
+from bot.welcome import maybe_welcome
 
 WINDOW_MINUTES = 15
 

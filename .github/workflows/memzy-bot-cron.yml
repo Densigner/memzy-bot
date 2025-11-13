@@ -39,7 +39,7 @@ jobs:
           POST_REWARD_THRESHOLDS: "5,10,25,50"
           HOT_TAKE_SCORE: "50"
         run: |
-          python bot/main.py
+          python -m bot.main
 
       - name: Commit state
         run: |
