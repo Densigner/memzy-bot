@@ -18,7 +18,8 @@ def main():
     reddit = praw.Reddit(
         client_id=CONFIG["client_id"],
         client_secret=CONFIG["client_secret"],
-        refresh_token=CONFIG["refresh_token"],
+        username=CONFIG["username"],
+        password=CONFIG["password"],
         user_agent=CONFIG["user_agent"],
     )
     sub = reddit.subreddit(CONFIG["subreddit"])
@@ -41,4 +42,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
