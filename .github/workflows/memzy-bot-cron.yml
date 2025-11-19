@@ -25,12 +25,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Debug REDDIT_REFRESH_TOKEN presence
+        env:
+          REDDIT_REFRESH_TOKEN: ${{ secrets.REDDIT_REFRESH_TOKEN }}
+        run: |
+          if [ -z "${REDDIT_REFRESH_TOKEN:-}" ]; then
+            echo "ERROR: REDDIT_REFRESH_TOKEN is MISSING"
+            exit 1
+          else
+            echo "OK: REDDIT_REFRESH_TOKEN present (length $(printf %s \"$REDDIT_REFRESH_TOKEN\" | wc -c))"
+          fi
+
       - name: Run bot tick
         env:
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
-          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          # Using OAuth refresh token instead of username/password
+          REDDIT_REFRESH_TOKEN: ${{ secrets.REDDIT_REFRESH_TOKEN }}
           SUBREDDIT: ${{ secrets.SUBREDDIT }}
           BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
           WELCOME_ENABLED: "true"
