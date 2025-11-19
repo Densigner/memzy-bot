@@ -7,3 +7,5 @@ state/
 /.vscode/
 dist/
 build/
+
+*.bak
