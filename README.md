@@ -41,7 +41,7 @@ Credentials / secrets
 
 - Copy `.env.example` to `.env` and fill in the values for your Reddit app and bot account:
 
-	- REDDIT_CLIENT_ID — iyAdTAq7SmKwdhSkBSiGkg
+	- REDDIT_CLIENT_ID — 
 	- REDDIT_CLIENT_SECRET — from your Reddit app
 	- REDDIT_USERNAME — bot account username (no u/)
 	- REDDIT_PASSWORD — bot account password
