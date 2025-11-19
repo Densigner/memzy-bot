@@ -40,7 +40,7 @@ jobs:
         env:
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          # Using OAuth refresh token instead of username/password
+          # Use refresh token for OAuth
           REDDIT_REFRESH_TOKEN: ${{ secrets.REDDIT_REFRESH_TOKEN }}
           SUBREDDIT: ${{ secrets.SUBREDDIT }}
           BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
