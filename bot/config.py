@@ -17,6 +17,7 @@ CONFIG = {
     "client_id": os.getenv("REDDIT_CLIENT_ID", ""),
     "client_secret": os.getenv("REDDIT_CLIENT_SECRET", ""),
     "refresh_token": os.getenv("REDDIT_REFRESH_TOKEN", ""),
+    "refresh_token": os.getenv("REDDIT_REFRESH_TOKEN", ""),
     "user_agent": os.getenv("REDDIT_USER_AGENT", "memzy-bot/1.0 (+github actions)"),
     "subreddit": os.getenv("SUBREDDIT", "memzy"),
     "bot_username": os.getenv("BOT_USERNAME", ""),
