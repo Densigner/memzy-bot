@@ -4255,6 +4255,22 @@
       "last_active_day": "2025-11-26",
       "comment_karma_in_sub": 1,
       "first_post_id": null
+    },
+    "Existing_Purpose5049": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-26",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "highjayhawk": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-26",
+      "comment_karma_in_sub": 0,
+      "first_post_id": null
     }
   }
 }
