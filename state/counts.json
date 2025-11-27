@@ -5226,10 +5226,10 @@
     },
     "Jabberwock_king": {
       "posts": 0,
-      "comments": 3,
+      "comments": 4,
       "streak": 1,
       "last_active_day": "2025-11-27",
-      "comment_karma_in_sub": 3,
+      "comment_karma_in_sub": 4,
       "first_post_id": null
     },
     "SurlyJohn009": {
@@ -5518,6 +5518,22 @@
       "streak": 1,
       "last_active_day": "2025-11-27",
       "comment_karma_in_sub": 2,
+      "first_post_id": null
+    },
+    "blklab84": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-27",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "FocalorLucifuge": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-27",
+      "comment_karma_in_sub": 1,
       "first_post_id": null
     }
   }
