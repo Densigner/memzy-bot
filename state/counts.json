@@ -7802,10 +7802,10 @@
     },
     "OrganizationOk5418": {
       "posts": 0,
-      "comments": 3,
+      "comments": 7,
       "streak": 1,
       "last_active_day": "2025-11-28",
-      "comment_karma_in_sub": 3,
+      "comment_karma_in_sub": 7,
       "first_post_id": null
     },
     "softcell1966": {
@@ -7822,6 +7822,14 @@
       "streak": 1,
       "last_active_day": "2025-11-28",
       "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "MonkishMarmot": {
+      "posts": 0,
+      "comments": 2,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     }
   }
