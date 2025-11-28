@@ -8143,6 +8143,22 @@
       "last_active_day": "2025-11-28",
       "comment_karma_in_sub": 2,
       "first_post_id": null
+    },
+    "Negative-Document721": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "Both_Impression4044": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
     }
   }
 }
