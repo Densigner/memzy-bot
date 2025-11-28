@@ -698,10 +698,10 @@
     },
     "Narrow_Maximum7": {
       "posts": 0,
-      "comments": 1,
+      "comments": 2,
       "streak": 1,
-      "last_active_day": "2025-11-20",
-      "comment_karma_in_sub": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     },
     "they_walk_among_us_": {
@@ -7854,6 +7854,22 @@
       "streak": 1,
       "last_active_day": "2025-11-28",
       "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "Novel_Platform_1948": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "Wild-Picture-9340": {
+      "posts": 0,
+      "comments": 2,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     }
   }
