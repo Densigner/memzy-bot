@@ -7946,13 +7946,21 @@
     },
     "specialballsweat": {
       "posts": 0,
-      "comments": 1,
+      "comments": 2,
       "streak": 1,
       "last_active_day": "2025-11-28",
-      "comment_karma_in_sub": 1,
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     },
     "Details_Pending": {
+      "posts": 0,
+      "comments": 2,
+      "streak": 1,
+      "last_active_day": "2025-11-28",
+      "comment_karma_in_sub": 2,
+      "first_post_id": null
+    },
+    "ImperitorEst": {
       "posts": 0,
       "comments": 1,
       "streak": 1,
