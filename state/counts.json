@@ -22514,18 +22514,18 @@
     },
     "Nochnichtvergeben": {
       "posts": 0,
-      "comments": 1,
+      "comments": 2,
       "streak": 1,
       "last_active_day": "2025-12-03",
-      "comment_karma_in_sub": 1,
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     },
     "Jendmin": {
       "posts": 0,
-      "comments": 1,
+      "comments": 2,
       "streak": 1,
       "last_active_day": "2025-12-03",
-      "comment_karma_in_sub": 1,
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     },
     "CMDR_Kaus": {
@@ -22534,6 +22534,30 @@
       "streak": 1,
       "last_active_day": "2025-12-03",
       "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "Feisty-Principle6178": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-12-03",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "Lynx288": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-12-03",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "HumorousBear": {
+      "posts": 0,
+      "comments": 2,
+      "streak": 1,
+      "last_active_day": "2025-12-03",
+      "comment_karma_in_sub": 2,
       "first_post_id": null
     }
   }
