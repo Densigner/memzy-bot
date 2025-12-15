@@ -6,7 +6,10 @@ from bot.storage import load_meta, save_meta
 from bot.counters import record_submission, record_comment
 from bot.flair import update_user_flair
 
-WINDOW_MINUTES = 120
+# -------------------------
+# CONFIG
+# -------------------------
+WINDOW_MINUTES = 120  # safe window for cron-based runs
 
 
 def main():
@@ -22,7 +25,9 @@ def main():
 
     meta = load_meta()
 
-    # --- dedupe state (JSON-safe) ---
+    # -------------------------
+    # DEDUPE STATE (JSON-safe)
+    # -------------------------
     meta.setdefault("seen_posts", [])
     meta.setdefault("seen_comments", [])
 
@@ -32,11 +37,11 @@ def main():
     cutoff = time.time() - WINDOW_MINUTES * 60
 
     # -------------------------
-    # Submissions
+    # SUBMISSIONS
     # -------------------------
     for post in sub.new(limit=100):
         if post.created_utc < cutoff:
-            break
+            break  # submissions ARE ordered newest-first
 
         author = getattr(post.author, "name", None)
         if not author:
@@ -48,7 +53,7 @@ def main():
         record_submission(author, post.id)
         seen_posts.add(post.id)
 
-        if CONFIG["flair_enabled"]:
+        if CONFIG.get("flair_enabled"):
             try:
                 update_user_flair(
                     sub,
@@ -56,15 +61,18 @@ def main():
                     CONFIG["post_reward_thresholds"],
                     CONFIG["hot_take_score"],
                 )
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[FLAIR ERROR][POST] {author}: {e}")
 
     # -------------------------
-    # Comments
+    # COMMENTS
     # -------------------------
     for c in sub.comments(limit=200):
+        # IMPORTANT:
+        # sub.comments() is NOT guaranteed to be ordered
+        # so we must CONTINUE, not BREAK
         if c.created_utc < cutoff:
-            break
+            continue
 
         author = getattr(c.author, "name", None)
         if not author or author.lower() == me:
@@ -73,12 +81,11 @@ def main():
         if c.id in seen_comments:
             continue
 
-        score = getattr(c, "score", 0) or 0
-
-        record_comment(author, score_delta=score)
+        # Record participation (NOT score)
+        record_comment(author, score_delta=1)
         seen_comments.add(c.id)
 
-        if CONFIG["flair_enabled"]:
+        if CONFIG.get("flair_enabled"):
             try:
                 update_user_flair(
                     sub,
@@ -86,10 +93,12 @@ def main():
                     CONFIG["post_reward_thresholds"],
                     CONFIG["hot_take_score"],
                 )
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[FLAIR ERROR][COMMENT] {author}: {e}")
 
-    # --- persist dedupe state ---
+    # -------------------------
+    # PERSIST DEDUPE STATE
+    # -------------------------
     meta["seen_posts"] = list(seen_posts)
     meta["seen_comments"] = list(seen_comments)
 
