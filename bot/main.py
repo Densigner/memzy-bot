@@ -6,7 +6,7 @@ from bot.storage import load_meta, save_meta
 from bot.counters import record_submission, record_comment
 from bot.flair import update_user_flair
 
-WINDOW_MINUTES = 15
+WINDOW_MINUTES = 120
 
 
 def main():
