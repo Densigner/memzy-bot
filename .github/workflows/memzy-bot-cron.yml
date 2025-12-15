@@ -5,6 +5,11 @@ on:
     - cron: "*/10 * * * *"
   workflow_dispatch:
 
+# Prevent overlapping runs from clobbering state/*.json
+concurrency:
+  group: memzy-bot-state
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -12,19 +17,31 @@ jobs:
       contents: write
 
     steps:
+      # -------------------------
+      # Checkout repository
+      # -------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
+      # -------------------------
+      # Setup Python
+      # -------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # -------------------------
+      # Install dependencies
+      # -------------------------
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # -------------------------
+      # Sanity check secrets
+      # -------------------------
       - name: Debug REDDIT_REFRESH_TOKEN presence
         env:
           REDDIT_REFRESH_TOKEN: ${{ secrets.REDDIT_REFRESH_TOKEN }}
@@ -33,9 +50,12 @@ jobs:
             echo "ERROR: REDDIT_REFRESH_TOKEN is MISSING"
             exit 1
           else
-            echo "OK: REDDIT_REFRESH_TOKEN present (length $(printf %s \"$REDDIT_REFRESH_TOKEN\" | wc -c))"
+            echo "OK: REDDIT_REFRESH_TOKEN present (length $(printf %s "$REDDIT_REFRESH_TOKEN" | wc -c))"
           fi
 
+      # -------------------------
+      # Run bot logic
+      # -------------------------
       - name: Run bot tick
         env:
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
@@ -51,10 +71,19 @@ jobs:
         run: |
           python -m bot.main
 
-      - name: Commit state
+      # -------------------------
+      # Commit & push state safely
+      # -------------------------
+      - name: Commit & push state safely
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add state/*.json
           git commit -m "memzy-bot: update state [skip ci]" || echo "No changes"
+
+          # Pull latest main and replay our commit on top
+          git pull --rebase origin main
+
+          # Push updated state
           git push
