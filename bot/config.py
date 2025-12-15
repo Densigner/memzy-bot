@@ -29,7 +29,7 @@ CONFIG = {
     "flair_enabled": env_bool("FLAIR_ENABLED", "true"),
     "badges_enabled": env_bool("BADGES_ENABLED", "true"),
     "weekly_sticky_enabled": env_bool("WEEKLY_STICKY_ENABLED", "true"),
-    "weekly_challenge_enabled": env_bool("WEEKLY_CHALLENGE_ENABLED", "true"),
+    
 
     "post_reward_thresholds": [
         int(x.strip()) for x in os.getenv("POST_REWARD_THRESHOLDS", "5,10,25,50").split(",") if x.strip().isdigit()
