@@ -81177,12 +81177,12 @@
       "first_post_id": null
     },
     "Spirited-Ad8877": {
-      "posts": 0,
+      "posts": 1,
       "comments": 1,
       "streak": 1,
       "last_active_day": "2025-12-18",
       "comment_karma_in_sub": 1,
-      "first_post_id": null
+      "first_post_id": "1ppkolf"
     },
     "Ill-Perspective-5510": {
       "posts": 0,
@@ -81231,6 +81231,14 @@
       "last_active_day": "2025-12-18",
       "comment_karma_in_sub": 1,
       "first_post_id": null
+    },
+    "Lonely_Map_9911": {
+      "posts": 1,
+      "comments": 0,
+      "streak": 1,
+      "last_active_day": "2025-12-18",
+      "comment_karma_in_sub": 0,
+      "first_post_id": "1ppklu1"
     }
   }
 }
