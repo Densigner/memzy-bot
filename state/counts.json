@@ -1514,10 +1514,10 @@
     },
     "BeginningTower2486": {
       "posts": 0,
-      "comments": 3,
+      "comments": 4,
       "streak": 1,
       "last_active_day": "2025-12-20",
-      "comment_karma_in_sub": 3,
+      "comment_karma_in_sub": 4,
       "first_post_id": null
     },
     "QuietRiot5150": {
@@ -85118,6 +85118,22 @@
       "streak": 1,
       "last_active_day": "2025-12-20",
       "comment_karma_in_sub": 2,
+      "first_post_id": null
+    },
+    "MC12121": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-12-20",
+      "comment_karma_in_sub": 1,
+      "first_post_id": null
+    },
+    "FartSmelaSmartFela": {
+      "posts": 0,
+      "comments": 1,
+      "streak": 1,
+      "last_active_day": "2025-12-20",
+      "comment_karma_in_sub": 1,
       "first_post_id": null
     }
   }
